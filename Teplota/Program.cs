@@ -22,8 +22,8 @@ if (dny31.Contains(mesic)) dnyVMesici = 31;
 var dny = new List<string>();
 var stupne = new List<float>();
 //Výběr dne
-dny.Add("Zpět");
 for (int i = 1; i <= dnyVMesici; i++) dny.Add($"{i}.den");
+dny.Add("Zpět");
 dny.Add("Konec");
 bool opakovani = true;
 while (opakovani)
