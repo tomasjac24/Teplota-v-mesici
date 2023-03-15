@@ -1,10 +1,11 @@
 ﻿using Spectre.Console;
+using System.Linq.Expressions;
 //Výběr měsíce
 Zpět:
 var mesic = AnsiConsole.Prompt(
     new SelectionPrompt<string>()
         .Title("Vyber měsíc do kterého chceš zadat teplotu.")
-        .PageSize(10)
+        .PageSize(12)
         .MoreChoicesText("[grey](Vyber měsíc šipkami)[/]")
         .AddChoices(new[] {
             "Leden", "Únor","Březen","Duben","Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"
@@ -25,6 +26,7 @@ var stupne = new List<float>();
 for (int i = 1; i <= dnyVMesici; i++) dny.Add($"{i}.den");
 dny.Add("Zpět");
 dny.Add("Konec");
+dny.Add("Průměrná teplota");
 bool opakovani = true;
 while (opakovani)
 {
@@ -44,8 +46,17 @@ while (opakovani)
         opakovani = false;
         break;
     }
+    //Průměrná teplota
+    if(den== "Průměrná teplota")
+    {
+        Console.WriteLine(stupne.Average());
+        opakovani = false;
+        break;
+    }
+    //Přidání teploty
     float stupen = AnsiConsole.Ask<float>("Vypiš teplotu dne:");
     int pozice = dny.IndexOf(den);
     stupne.Add(stupen);
-    dny[pozice] = $"{pozice + 1}.den = {stupen}°C";
+    dny[pozice] = $"{pozice + 1}.den = [red]{stupen}°C[/]";
+
 }
