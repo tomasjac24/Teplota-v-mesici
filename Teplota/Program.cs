@@ -26,7 +26,7 @@ var stupne = new List<float>();
 for (int i = 1; i <= dnyVMesici; i++) dny.Add($"{i}.den");
 dny.Add("Zpět");
 dny.Add("Konec");
-dny.Add("Průměrná teplota");
+dny.Add("Max + Průměrná + min teplota");
 bool opakovani = true;
 while (opakovani)
 {
@@ -46,10 +46,12 @@ while (opakovani)
         opakovani = false;
         break;
     }
-    //Průměrná teplota
-    if(den== "Průměrná teplota")
+    //Výpis Max + Průměrná + min teplota
+    if (den== "Max + Průměrná + min teplota")
     {
-        Console.WriteLine(stupne.Average());
+        Console.WriteLine($"Maximální teplota je: {stupne.Max()}°C");
+        Console.WriteLine($"Průměrná teplota je: {stupne.Average()}°C");
+        Console.WriteLine($"Minimální teplota je: {stupne.Min()}°C");
         opakovani = false;
         break;
     }
@@ -58,5 +60,4 @@ while (opakovani)
     int pozice = dny.IndexOf(den);
     stupne.Add(stupen);
     dny[pozice] = $"{pozice + 1}.den = [red]{stupen}°C[/]";
-
 }
